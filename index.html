@@ -1,12 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
+
 <body>
-  <script src='./08 属性的封装.js'></script>
+  <!-- <script src='./08 属性的封装.js'></script> -->
+  <script>
+    var obj1 = {
+      a: 1,
+      b: 2
+    }
+    // function func(obj){
+    //   Object.defineProperty(obj,undefined,{
+    //     get(v){
+    //       return 0
+    //     },
+    //     set(v){
+    //       // return 123
+    //     }
+    //   })
+    //   return obj
+    // }
+
+    function func(obj) {
+      let proxy = new Proxy(obj, {
+        get(target, property) {
+          return target[property]?target[property]:0;
+        },
+        set(target, property, value) {
+          target[property] = value;
+        }
+      });
+      return proxy;
+    }
+    var value = func(obj1)
+
+    console.log(value.a)
+    console.log(value.b)
+    console.log(value.c)
+    console.log(value.d)
+  </script>
 </body>
+
 </html>

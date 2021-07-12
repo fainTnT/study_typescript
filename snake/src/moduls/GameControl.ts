@@ -57,8 +57,8 @@ export default class GameControl {
       alert(e.message)
       this.isLive = false;
     }
-    this.isLive && setTimeout(this.run.bind(this), 300 - (this.scorePanel.level - 1) * 30);
     this.snake.moveBody();
+    this.isLive && setTimeout(this.run.bind(this), 300 - (this.scorePanel.level - 1) * 30);
   }
   // 检查是否吃到食物
   checkEat(X: number, Y: number) {
